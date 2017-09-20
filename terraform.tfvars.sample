@@ -1,0 +1,7 @@
+digitalocean_token = "<your_api_token_here>"
+digitalocean_fingerprints = [
+    "<your_ssk_key_fingerprint>"
+]
+
+droplet_size = "512mb"
+droplet_region = "sfo2"
