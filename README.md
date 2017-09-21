@@ -2,7 +2,7 @@
 
 Simple Terraform environment used to quickly spin up droplets on Digital Ocean for ad-hoc testing of things such as scripts, recipes, playbooks, etc against a fresh Enterprise Linux installation.
 
-### Requirments
+### Requirements
 
 * Digital Ocean account
 * Terraform v0.10.x or later
@@ -54,3 +54,15 @@ Reference the `droplet_ipv4_addresses` output on the CLI for the names and corre
 To terminate all droplets in your test ocean, simply run `terraform apply` with no `droplet_count` specified. This effectively executes with a `droplet_count` of "0" resulting in the previously spawned droplets being destroyed.
 
     terraform apply
+
+### Configuration
+
+* `droplet_size` defaults to `512mb` in provided *.tfvars file.
+* `droplet_image` defaults to `centos-7-x64` in provided *.tfvars file.
+* `droplet_region` defaults to `sfo2` in provided *.tfvars file.
+
+To find alternate valid values for these variables, one may use the following [doctl](https://github.com/digitalocean/doctl/) CLI client (reference the doctl README for doctl setup procedure) commands:
+
+* `doctl compute size list`
+* `doctl compute image list --public`
+* `doctl compute region list`
