@@ -7,13 +7,19 @@ provider "digitalocean" {
   token = "${var.digitalocean_token}"
 }
 
+# Provides local shell username to Terraform for droplet naming purposes
+data "external" "tfuser" {
+  program = ["sh", "-c", "echo '{\"name\":\"'$(whoami)'\"}'"]
+}
+
 # Spin up variable number of droplets
 resource "digitalocean_droplet" "instance" {
   count = "${var.droplet_count}"
 
   name = "${format(
-    "%s-%s-%s-%02d",
+    "%s-%s-%s-%s-%02d",
     replace(var.droplet_image, "/-.*/", ""),
+    data.external.tfuser.result.name,
     var.droplet_size,
     var.droplet_region,
     count.index + 1
