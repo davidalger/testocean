@@ -11,4 +11,5 @@ variable "droplet_count" {
 }
 
 variable "droplet_size" {}
+variable "droplet_image" {}
 variable "droplet_region" {}

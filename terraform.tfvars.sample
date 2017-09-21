@@ -4,4 +4,5 @@ digitalocean_fingerprints = [
 ]
 
 droplet_size = "512mb"
+droplet_image = "centos-7-x64"
 droplet_region = "sfo2"

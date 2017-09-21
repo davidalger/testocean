@@ -12,15 +12,16 @@ resource "digitalocean_droplet" "instance" {
   count = "${var.droplet_count}"
 
   name = "${format(
-    "centos-%s-%s-%02d",
+    "%s-%s-%s-%02d",
+    replace(var.droplet_image, "/-.*/", ""),
     var.droplet_size,
     var.droplet_region,
     count.index + 1
   )}"
 
-  region   = "${var.droplet_region}"
-  image    = "centos-7-x64"
   size     = "${var.droplet_size}"
+  image    = "${var.droplet_image}"
+  region   = "${var.droplet_region}"
   ssh_keys = ["${var.digitalocean_fingerprints}"]
 }
 
