@@ -3,7 +3,7 @@ variable "digitalocean_token" {}
 
 # Fingerprints of SSH key(s) to authorize for connections to droplets
 variable "digitalocean_fingerprints" {
-  type = "list"
+  type = list(string)
 }
 
 variable "droplet_count" {

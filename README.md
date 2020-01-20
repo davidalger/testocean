@@ -5,7 +5,7 @@ Simple Terraform environment used to quickly spin up droplets on Digital Ocean f
 ### Requirements
 
 * Digital Ocean account
-* Terraform v0.10.x or later
+* Terraform v0.12 or later
 
 ### Setup
 
@@ -39,7 +39,7 @@ Outputs:
 droplet_ipv4_addresses = {}
 ```
 
-You can alter this behaviour by setting a different default `droplet_count` value in the `terraform.tfvars` file but note that this will change the procedure for terminating droplets to using the `terraform destroy` command vs what is documented below.
+You can alter this behavior by setting a different default `droplet_count` value in the `terraform.tfvars` file but note that this will change the procedure for terminating droplets to using the `terraform destroy` command vs what is documented below.
 
 #### Spawning Droplets
 
