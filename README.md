@@ -41,6 +41,8 @@ droplet_ipv4_addresses = {}
 
 You can alter this behavior by setting a different default `droplet_count` value in the `terraform.tfvars` file but note that this will change the procedure for terminating droplets to using the `terraform destroy` command vs what is documented below.
 
+When droplets are created, the `whoami` command is used to initialize an admin shell user corresponding to your local shell user. This is also used as part of the droplet naming pattern for easy identification. The default 'centos' or 'ubuntu' users will not be created as a result. When connecting via SSH, this means it should be sufficient to simply type `ssh <ip>` on the command line to authenticate as the created user. Note that it may take a minute or two for the cloud-init system to prepare the shell user for use.
+
 #### Spawning Droplets
 
 To spin up your test ocean, run the `terraform apply` command specifying how many droplets you would like spun up like so:

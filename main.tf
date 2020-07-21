@@ -30,6 +30,25 @@ resource "digitalocean_droplet" "instance" {
     count.index + 1
   )
 
+  # Initialize adm user matching local shell username
+  user_data = <<-EOT
+    #cloud-config
+    users:
+    - groups: adm, systemd-journal
+      name: ${data.external.tfuser.result.name}
+      shell: /bin/bash
+      sudo: ALL=(ALL) NOPASSWD:ALL
+    runcmd:
+    - |
+      su ${data.external.tfuser.result.name} -c '
+        mkdir ~/.ssh
+        chmod 700 ~/.ssh
+        echo "$(curl -s http://169.254.169.254/metadata/v1/public-keys)" \
+          > ~/.ssh/authorized_keys
+        chmod 600 ~/.ssh/authorized_keys
+      '
+ EOT
+
   size     = var.droplet_size
   image    = var.droplet_image
   region   = var.droplet_region
